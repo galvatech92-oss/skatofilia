@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skatofilia | Press Kit Oficial</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fuentes de Google: Anton (Impacto), Permanent Marker (Punk), Roboto (Lectura) -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Configuración Global y Variables --- */
+        :root {
+            --ska-red: #D90429;
+            --ska-dark: #101010;
+            --ska-gray: #2B2D42;
+            --ska-white: #EDF2F4;
+        }
+
+        body {
+            background-color: var(--ska-dark);
+            color: var(--ska-white);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .font-hand {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* --- Textura de Fondo (Noise) --- */
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+        }
+
+        /* --- Efecto Glitch para Títulos --- */
+        .glitch-wrapper {
+            position: relative;
+        }
+        
+        .glitch {
+            position: relative;
+            color: white;
+            font-size: 4rem; 
+            letter-spacing: 0.1em;
+            animation: glitch-skew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+        }
+
+        @media (max-width: 768px) {
+            .glitch { font-size: 2.5rem; }
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(38px, 9999px, 84px, 0); transform: skew(0.55deg); }
+            5% { clip: rect(66px, 9999px, 5px, 0); transform: skew(0.1deg); }
+            10% { clip: rect(21px, 9999px, 86px, 0); transform: skew(0.06deg); }
+            15% { clip: rect(98px, 9999px, 4px, 0); transform: skew(0.66deg); }
+            20% { clip: rect(10px, 9999px, 35px, 0); transform: skew(0.53deg); }
+            100% { clip: rect(48px, 9999px, 92px, 0); transform: skew(0.48deg); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(6px, 9999px, 49px, 0); transform: skew(0.52deg); }
+            5% { clip: rect(72px, 9999px, 86px, 0); transform: skew(0.6deg); }
+            10% { clip: rect(46px, 9999px, 31px, 0); transform: skew(0.18deg); }
+            15% { clip: rect(95px, 9999px, 32px, 0); transform: skew(0.79deg); }
+            20% { clip: rect(54px, 9999px, 38px, 0); transform: skew(0.62deg); }
+            100% { clip: rect(79px, 9999px, 20px, 0); transform: skew(0.24deg); }
+        }
+
+        /* --- Scroll Animation Classes --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Custom Checkered Border --- */
+        .ska-border-bottom {
+            background-image: 
+                linear-gradient(45deg, #000 25%, transparent 25%), 
+                linear-gradient(-45deg, #000 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #000 75%), 
+                linear-gradient(-45deg, transparent 75%, #000 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            height: 20px;
+            width: 100%;
+            background-color: var(--ska-white);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        /* --- Hero Image Overlay --- */
+        .hero-overlay {
+            background: linear-gradient(0deg, rgba(16,16,16,1) 0%, rgba(16,16,16,0.8) 25%, rgba(217,4,41,0.2) 100%);
+        }
+        
+        .btn-glitch {
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .btn-glitch:hover {
+            letter-spacing: 2px;
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* --- Listas de Eventos --- */
+        .event-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+        .event-list li::before {
+            content: "•";
+            color: var(--ska-red);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- Estilos para Galería --- */
+        .gallery-item {
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: border-color 0.3s ease;
+        }
+        .gallery-item:hover {
+            border-color: var(--ska-red);
+        }
+        .gallery-img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Ruido de fondo constante -->
+    <div class="noise-bg"></div>
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-40 top-0 left-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <!-- Logo reemplazando texto SKTF -->
+                    <img src="skatofilia.png" alt="Skatofilia Logo" class="h-16 w-auto hover:scale-105 transition-transform drop-shadow-[0_0_5px_rgba(217,4,41,0.5)]">
+                </div>
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#bio" class="hover:text-red-500 transition-colors px-3 py-2 rounded-md text-lg font-medium">BIO</a>
+                        <a href="#integrantes" class="hover:text-red-500 transition-colors px-3 py-2 rounded-md text-lg font-medium">INTEGRANTES</a>
+                        <a href="#musica" class="hover:text-red-500 transition-colors px-3 py-2 rounded-md text-lg font-medium">MÚSICA</a>
+                        <a href="#eventos" class="hover:text-red-500 transition-colors px-3 py-2 rounded-md text-lg font-medium">EVENTOS</a>
+                        <a href="#contacto" class="bg-red-700 hover:bg-red-600 text-white px-4 py-2 rounded-sm font-bold skew-x-[-10deg] transition-transform hover:skew-x-0">CONTRATACIONES</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex lg:hidden">
+                    <button type="button" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="lg:hidden hidden bg-black bg-opacity-95 absolute w-full z-50" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center border-b-4 border-red-700">
+                <a href="#bio" onclick="toggleMenu()" class="block hover:bg-gray-800 px-3 py-4 rounded-md text-xl font-bold">BIO</a>
+                <a href="#integrantes" onclick="toggleMenu()" class="block hover:bg-gray-800 px-3 py-4 rounded-md text-xl font-bold">INTEGRANTES</a>
+                <a href="#musica" onclick="toggleMenu()" class="block hover:bg-gray-800 px-3 py-4 rounded-md text-xl font-bold">MÚSICA</a>
+                <a href="#eventos" onclick="toggleMenu()" class="block hover:bg-gray-800 px-3 py-4 rounded-md text-xl font-bold">EVENTOS</a>
+                <a href="#contacto" onclick="toggleMenu()" class="block text-red-500 hover:bg-gray-800 px-3 py-4 rounded-md text-xl font-bold">CONTACTO</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image Placeholder (Replace src with actual band photo) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1974&auto=format&fit=crop" 
+                 alt="Fondo concierto" 
+                 class="w-full h-full object-cover filter grayscale contrast-125 brightness-50">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="mb-4">
+                <!-- Aquí iría el logo imagen, simulado con texto por ahora -->
+                <!-- <img src="image_e2ce51.png" alt="Skatofilia Logo" class="mx-auto w-64 md:w-96 mb-6 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]"> -->
+            </div>
+            
+            <div class="glitch-wrapper mb-2">
+                <h1 class="glitch font-black" data-text="SKATOFILIA">SKATOFILIA</h1>
+            </div>
+            <p class="font-hand text-red-500 text-xl md:text-3xl mt-2 tracking-wide transform -rotate-2">
+                DESDE EL ORIENTE / CDMX
+            </p>
+            <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#musica" class="btn-glitch bg-white text-black px-8 py-3 font-bold text-lg uppercase tracking-wider border-2 border-white">
+                    Escuchar EP
+                </a>
+                <a href="#contacto" class="btn-glitch bg-transparent text-red-500 border-2 border-red-600 px-8 py-3 font-bold text-lg uppercase tracking-wider hover:bg-red-600 hover:text-white">
+                    Press Kit
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-3xl text-red-600"></i>
+        </div>
+    </header>
+
+    <div class="ska-border-bottom"></div>
+
+    <!-- Bio Section -->
+    <section id="bio" class="py-20 px-4 max-w-6xl mx-auto reveal">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-full h-full border-4 border-red-700 z-0 hidden md:block"></div>
+                <!-- Placeholder Image for Band -->
+                <img src="SKATOFILIA.jpg" 
+                     alt="Skatofilia en vivo" 
+                     class="relative z-10 w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl"
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop'">
+                
+                <!-- Segunda Foto Agregada -->
+                <img src="SKATOFILIA2.jpg" 
+                     alt="Skatofilia Acción" 
+                     class="relative z-10 w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl mt-6"
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1501612766622-2788414774cf?q=80&w=2067&auto=format&fit=crop'">
+            </div>
+            
+            <div>
+                <h2 class="text-5xl md:text-7xl mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
+                    SKACORE<br><span class="text-red-600">ÑERO</span>
+                </h2>
+                <div class="space-y-4 text-gray-300 text-lg leading-relaxed text-justify">
+                    <p>
+                        Originarios de la <strong class="text-white">Colonia Del Mar</strong>, en el oriente de la Ciudad de México, <span class="font-hand text-red-500 text-xl">Skatofilia</span> no es solo una banda, es un golpe de realidad.
+                    </p>
+                    <p>
+                        Surgidos de la escena contracultural y underground, han forjado un sonido propio: una fusión agresiva y bailable de <strong>Ska, Punk, Hardcore y Metal</strong>, con matices de Reggae y Cumbia. 
+                    </p>
+                    <p class="border-l-4 border-red-600 pl-4 italic text-white">
+                        "Autogestión, postura anti-consumo y organización colectiva."
+                    </p>
+                    <p>
+                        Su música es el soundtrack de la resistencia barrial. Con letras cargadas de crítica social y ritmos que incitan al slam, Skatofilia se mantiene firme en la primera línea del combate sonoro.
+                    </p>
+                </div>
+                
+                <div class="mt-8 flex gap-4">
+                    <div class="text-center">
+                        <span class="block text-3xl font-bold text-red-600">3+</span>
+                        <span class="text-sm text-gray-400">DISCOS</span>
+                    </div>
+                    <div class="text-center px-6 border-l border-gray-700">
+                        <span class="block text-3xl font-bold text-red-600">CDMX</span>
+                        <span class="text-sm text-gray-400">ORIGEN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrantes Section -->
+    <section id="integrantes" class="py-20 bg-zinc-900 reveal">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-center text-4xl md:text-6xl mb-16">ALINEACIÓN <span class="text-red-600">OFICIAL</span></h2>
+            
+            <!-- Grid modificado para fotos verticales (más estrechas) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
+                
+                <!-- Leslie Tatoo -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                    <!-- Foto Vertical (h-auto min-h-[500px] o aspect ratio) -->
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="leslie.jpg" 
+                              alt="Leslie Tatoo" 
+                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1780&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-microphone text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">LESLIE TATOO</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Saxofón y Gritos</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Kevin -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="kevin.jpg" 
+                              alt="Kevin" 
+                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=2064&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-music text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">KEVIN</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Trombón</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Joy Divixion -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="joydivixion.png" 
+                              alt="Joy Divixion" 
+                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1549298240-0d8e60513026?q=80&w=2070&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-guitar text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">JOY DIVIXION</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Guitarra</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Chango -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="chango.jpg" 
+                              alt="Chango" 
+                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=2070&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-drum text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">CHANGO</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Percusión</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Tetra -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="tetra.png" 
+                              alt="Tetra" 
+                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-keyboard text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">TETRA</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Teclado</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+                
+                <!-- Vomitin -->
+                 <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="vomitin.png" 
+                              alt="Vomitín" 
+                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1460039230329-eb070fc6c77c?q=80&w=1935&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-guitar text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">VOMITÍN</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Bajo</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section id="musica" class="py-20 px-4 reveal relative">
+        <!-- Background decorative element -->
+        <div class="absolute right-0 top-20 text-gray-800 opacity-20 font-black text-9xl select-none hidden lg:block rotate-90">
+            MIERDA
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-5xl md:text-7xl mb-12 border-b-4 border-white inline-block">DISCOGRAFÍA</h2>
+
+            <!-- SoundCloud Mini Player Embed (Altura ajustada para lista) -->
+            <div class="mb-12 border border-red-600 shadow-[4px_4px_0px_#D90429] bg-black">
+                <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/skatofilia-skacore&color=%23d90429&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=false"></iframe>
+            </div>
+            
+            <!-- Album List -->
+            <div class="space-y-8">
+                
+                <!-- Album 1 -->
+                <div class="bg-zinc-900 p-8 border-l-8 border-red-600 hover:bg-zinc-800 transition-all text-center md:text-left">
+                    <h3 class="text-3xl md:text-4xl mb-2 text-white">MÚSIKA MIERDA</h3>
+                    <p class="text-gray-400 mb-4 font-hand">Noise Factory Records | EP Completo</p>
+                </div>
+
+                <!-- Album 2 -->
+                <div class="bg-zinc-900 p-8 border-l-8 border-white hover:bg-zinc-800 transition-all text-center md:text-left">
+                    <h3 class="text-3xl md:text-4xl mb-2 text-white">SKATOFILIA</h3>
+                    <p class="text-gray-400 mb-4 font-hand">Disco Homónimo</p>
+                </div>
+
+                <!-- Album 3 -->
+                <div class="bg-zinc-900 p-8 border-l-8 border-gray-600 hover:bg-zinc-800 transition-all text-center md:text-left">
+                    <h3 class="text-3xl md:text-4xl mb-2 text-white">DEMO 2020 / PRIMERA LÍNEA</h3>
+                    <p class="text-gray-400 mb-4 font-hand">Material de 6 temas</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTOS SECTION -->
+    <section id="eventos" class="py-20 px-4 bg-zinc-900 reveal">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl md:text-7xl mb-12 text-center">TOUR / <span class="text-red-600">EVENTOS</span></h2>
+
+            <!-- Próxima Presentación Highlight -->
+            <div class="bg-red-700 text-white p-8 md:p-12 mb-16 transform -rotate-1 shadow-[10px_10px_0px_#fff] border-2 border-white max-w-4xl mx-auto text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-20">
+                    <i class="fas fa-bullhorn text-9xl"></i>
+                </div>
+                <p class="font-hand text-2xl mb-2 text-black font-bold">PRÓXIMA PRESENTACIÓN</p>
+                <h3 class="text-5xl md:text-7xl font-black mb-4 uppercase leading-none">SKATULE — El Tule Rifa</h3>
+                <a href="https://ticketplanet.com.mx/SKATULE-EN-TULTEPEC/" target="_blank" class="inline-block bg-black text-white hover:text-red-500 font-bold py-3 px-8 text-xl uppercase tracking-wider border-2 border-black hover:border-white transition-all mt-4">
+                    Confirmar Asistencia
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+                
+                <!-- COLOMBIA -->
+                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full">
+                    <h3 class="text-3xl text-red-600 mb-6 border-b border-gray-700 pb-2"><i class="fas fa-map-marker-alt mr-2"></i> COLOMBIA</h3>
+                    <ul class="event-list text-gray-300">
+                        <li>Decibelios en la Kapital</li>
+                        <li>Decibelios en Bogotá (Boro Room)</li>
+                        <li>Rockalperro 2025</li>
+                        <li>Prefestival Krampunks</li>
+                        <li>Putrefacto Fest</li>
+                        <li>Gatrobar Punk (El Hormiguero)</li>
+                    </ul>
+                </div>
+
+                <!-- CDMX / EDO MEX -->
+                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full">
+                    <h3 class="text-3xl text-red-600 mb-6 border-b border-gray-700 pb-2"><i class="fas fa-skull mr-2"></i> CDMX / EDO. MÉX.</h3>
+                    <ul class="event-list text-gray-300 text-sm">
+                        <li>Gran Presentación de Colores — Dioses Bikers México</li>
+                        <li>Skamorafest</li>
+                        <li>Aniversario Ska Klub Sur Radio Obrera</li>
+                        <li>12 años de Skatofilia (Salón Grugaspe)</li>
+                        <li>OFRENDA 25 (Chamountoya)</li>
+                        <li>Contra la Corrupción Todos al Che</li>
+                        <li>Asamblea y Concierto en la UNAM</li>
+                        <li>Voces de Oriente: La Apatía No Nos Calla</li>
+                        <li>Trajinera Cannábica (Xochimilco)</li>
+                        <li>Acuérdate de Acapulco</li>
+                        <li>4to Aniversario Rebelion4Life</li>
+                        <li>Alterarte Fest (CDMX)</li>
+                    </ul>
+                </div>
+
+                <!-- CHIAPAS -->
+                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full">
+                    <h3 class="text-3xl text-red-600 mb-6 border-b border-gray-700 pb-2"><i class="fas fa-tree mr-2"></i> CHIAPAS</h3>
+                    <ul class="event-list text-gray-300">
+                        <li>Lanzamiento del disco “Nada de Nadie” de Kadejo</li>
+                        <li>La Catrina (San Cristóbal, Chiapas)</li>
+                    </ul>
+                </div>
+
+                <!-- CHILE -->
+                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full">
+                    <h3 class="text-3xl text-red-600 mb-6 border-b border-gray-700 pb-2"><i class="fas fa-star mr-2"></i> CHILE</h3>
+                    <ul class="event-list text-gray-300">
+                        <li>Bar 1 (Bombero Núñez)</li>
+                        <li>Primer Encuentro Musical del Taller de Batería Latinoamericana</li>
+                        <li>Ska Fest XV (Barrio Bellavista)</li>
+                        <li>Okupa tu Plaza (Teatro Feria Libre)</li>
+                        <li>Acopio Fest Vol. II (Elefante Blanco)</li>
+                        <li>Cine Arte Alameda</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- GALERÍA DE FLYERS -->
+            <div class="mt-20 border-t border-gray-800 pt-16">
+                <h3 class="text-4xl md:text-5xl text-center mb-12 uppercase text-white font-black">Galería de <span class="text-red-600">Flyers</span></h3>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <!-- ACAPULCO -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('ACAPULCO.jpg')">
+                        <img src="ACAPULCO.jpg" alt="ACAPULCO" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>ACAPULCO.jpg (No encontrado)</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- ACOPIOFEST -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('ACOPIOFEST.jpg')">
+                        <img src="ACOPIOFEST.jpg" alt="ACOPIOFEST" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>ACOPIOFEST.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- ALTERARTE -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('ALTERARTE.jpg')">
+                        <img src="ALTERARTE.jpg" alt="ALTERARTE" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>ALTERARTE.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- BAR1 -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('BAR1.jpg')">
+                        <img src="BAR1.jpg" alt="BAR1" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>BAR1.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- CLUBSKA -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('CLUBSKA.jpg')">
+                        <img src="CLUBSKA.jpg" alt="CLUBSKA" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>CLUBSKA.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- decibelios -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('decibelios.jpg')">
+                        <img src="decibelios.jpg" alt="decibelios" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>decibelios.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- diosesbikers -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('diosesbikers.jpg')">
+                        <img src="diosesbikers.jpg" alt="diosesbikers" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>diosesbikers.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- gastrobarpunk -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('gastrobarpunk.jpg')">
+                        <img src="gastrobarpunk.jpg" alt="gastrobarpunk" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>gastrobarpunk.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- KADEJO -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('KADEJO.jpg')">
+                        <img src="KADEJO.jpg" alt="KADEJO" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>KADEJO.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- krampunks -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('krampunks.jpg')">
+                        <img src="krampunks.jpg" alt="krampunks" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>krampunks.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- LACATRINA -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('LACATRINA.jpg')">
+                        <img src="LACATRINA.jpg" alt="LACATRINA" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>LACATRINA.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- putrefactofest -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('putrefactofest.jpg')">
+                        <img src="putrefactofest.jpg" alt="putrefactofest" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>putrefactofest.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- rebelion -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('rebelion.jpg')">
+                        <img src="rebelion.jpg" alt="rebelion" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>rebelion.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- rockalperro -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('rockalperro.jpg')">
+                        <img src="rockalperro.jpg" alt="rockalperro" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>rockalperro.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- skaclubsur -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('skaclubsur.jpg')">
+                        <img src="skaclubsur.jpg" alt="skaclubsur" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>skaclubsur.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- SKAFESTXV -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('SKAFESTXV.jpg')">
+                        <img src="SKAFESTXV.jpg" alt="SKAFESTXV" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>SKAFESTXV.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- SKAMORA -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('SKAMORA.jpg')">
+                        <img src="SKAMORA.jpg" alt="SKAMORA" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>SKAMORA.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- trajinera -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('trajinera.jpg')">
+                        <img src="trajinera.jpg" alt="trajinera" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>trajinera.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- UNAM -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('UNAM.jpg')">
+                        <img src="UNAM.jpg" alt="UNAM" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>UNAM.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                    <!-- VOCESDEORIENTE -->
+                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('VOCESDEORIENTE.jpg')">
+                        <img src="VOCESDEORIENTE.jpg" alt="VOCESDEORIENTE" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>VOCESDEORIENTE.jpg</div>'">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
+                            <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Galeria / Video Embed -->
+    <section class="py-20 bg-black reveal">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-4xl mb-8">SESIONES <span class="text-red-600">EN VIVO</span></h2>
+            <div class="w-full max-w-4xl mx-auto border-4 border-gray-800 shadow-[0_0_20px_rgba(220,38,38,0.3)] relative group">
+                <a href="https://youtu.be/aF87aKlbj44" target="_blank" class="block relative">
+                    <img src="https://img.youtube.com/vi/aF87aKlbj44/maxresdefault.jpg" alt="Video Thumbnail" class="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fab fa-youtube text-7xl text-red-600 drop-shadow-lg group-hover:scale-110 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+            <h3 class="text-2xl mt-6 font-bold text-white uppercase">🔥Skatofilia🔥🔈7 Primera Linea🔈 [Live at Consola Record]</h3>
+            <p class="mt-2 text-gray-400 font-hand">Grabado también en Leslie Tattoo Estudio</p>
+        </div>
+    </section>
+
+    <div class="ska-border-bottom transform rotate-180"></div>
+
+    <!-- Contacto / Footer -->
+    <section id="contacto" class="py-20 px-4 text-center reveal">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-6xl mb-6 text-white">CONTRATACIONES</h2>
+            <p class="text-xl text-gray-300 mb-10">
+                Directo y sin intermediarios. Llevamos el Skacoreñero a tu ciudad.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+                <a href="https://www.facebook.com/skatofilia.skacore.oficial" target="_blank" class="flex items-center justify-center gap-3 bg-[#1877F2] hover:bg-blue-700 text-white p-4 font-bold text-lg rounded shadow-[4px_4px_0px_#fff] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                    <i class="fab fa-facebook-f text-2xl"></i> FACEBOOK OFICIAL
+                </a>
+                <a href="https://www.instagram.com/skatofilia/" target="_blank" class="flex items-center justify-center gap-3 bg-[#E1306C] hover:bg-pink-700 text-white p-4 font-bold text-lg rounded shadow-[4px_4px_0px_#fff] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                    <i class="fab fa-instagram text-2xl"></i> INSTAGRAM
+                </a>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 mt-8">
+                <p class="font-hand text-gray-500">© 2026 SKATOFILIA. CDMX. ORIENTE.</p>
+                <p class="text-xs text-gray-700 mt-2">Diseño EPK autogestivo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para Flyers (Lightbox) -->
+    <div id="imageModal" class="fixed inset-0 z-[60] hidden bg-black bg-opacity-95 flex items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-5xl hover:text-red-600 focus:outline-none z-[70] transition-colors">&times;</button>
+        <img id="modalImage" src="" alt="Flyer Full" class="max-h-[90vh] max-w-[90vw] object-contain shadow-[0_0_50px_rgba(220,38,38,0.4)] transform scale-95 transition-transform duration-300">
+    </div>
+
+    <!-- JavaScript para interactividad -->
+    <script>
+        // Menu Móvil Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Efecto Navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-black', 'shadow-lg');
+            }
+        });
+
+        // Intersection Observer para animaciones de entrada (Reveal)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Modal Logic ---
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        function openModal(src) {
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalImg.classList.remove('scale-95');
+                modalImg.classList.add('scale-100');
+            }, 10);
+            modalImg.src = src;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalImg.classList.remove('scale-100');
+            modalImg.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modalImg.src = '';
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close on click outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
