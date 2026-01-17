@@ -234,6 +234,15 @@
             display: none; /* Asegura que se oculte del layout */
         }
 
+        /* --- Auto-Animation para Integrantes en Scroll --- */
+        /* Esta clase se agrega con JS cuando el integrante es visible */
+        .auto-hover-active .img-member {
+            transform: scale(1.1);
+        }
+        .auto-hover-active .info-member {
+            transform: translateY(0);
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -285,11 +294,11 @@
 
     <!-- Hero Section -->
     <header class="relative h-screen flex items-center justify-center overflow-hidden bg-black">
-        <!-- Background Image Optimized for Mobile -->
+        <!-- Background Image Optimized for Mobile (Cubre toda la pantalla, adiós bordes negros) -->
         <div class="absolute inset-0 z-0">
             <img src="fondoconcierto.png" 
                  alt="Fondo concierto" 
-                 class="w-full h-full object-contain md:object-cover filter brightness-75 transition-transform duration-[20s] hover:scale-110 ease-linear"
+                 class="w-full h-full object-cover filter brightness-75 transition-transform duration-[20s] hover:scale-110 ease-linear"
                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1974&auto=format&fit=crop'">
             <div class="hero-overlay absolute inset-0"></div>
         </div>
@@ -306,11 +315,12 @@
             <p class="font-hand text-red-500 text-xl md:text-3xl mt-2 tracking-wide transform -rotate-2 animate-hero animate-delay-400">
                 DESDE EL ORIENTE / CDMX
             </p>
+            <!-- Botones más chicos en celular (text-sm, py-2, px-5) -->
             <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center animate-hero animate-delay-600">
-                <a href="#musica" class="btn-glitch bg-white text-black px-8 py-3 font-bold text-lg uppercase tracking-wider border-2 border-white">
+                <a href="#musica" class="btn-glitch bg-white text-black px-5 py-2 text-sm md:px-8 md:py-3 md:font-bold md:text-lg uppercase tracking-wider border-2 border-white">
                     Escuchar EP
                 </a>
-                <a href="#contacto" class="btn-glitch bg-transparent text-red-500 border-2 border-red-600 px-8 py-3 font-bold text-lg uppercase tracking-wider hover:bg-red-600 hover:text-white">
+                <a href="#contacto" class="btn-glitch bg-transparent text-red-500 border-2 border-red-600 px-5 py-2 text-sm md:px-8 md:py-3 md:font-bold md:text-lg uppercase tracking-wider hover:bg-red-600 hover:text-white">
                     Press Kit
                 </a>
             </div>
@@ -384,17 +394,17 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
                 
                 <!-- 1. Leslie Tatoo -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal">
+                <div class="member-card group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal">
                     <!-- Foto Vertical (h-auto min-h-[500px] o aspect ratio) -->
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="leslie.jpg" 
                               alt="Leslie Tatoo" 
-                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              class="img-member w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1780&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
                     
-                    <div class="absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="info-member absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-microphone text-2xl text-red-600"></i>
                         </div>
@@ -405,15 +415,15 @@
                 </div>
 
                 <!-- 2. Donnas (Movido después de Leslie) -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-100">
+                <div class="member-card group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-100">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="DONNAS.png" 
                               alt="Donnas" 
-                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              class="img-member w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=2064&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="info-member absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-music text-2xl text-red-600"></i>
                         </div>
@@ -424,15 +434,15 @@
                 </div>
 
                 <!-- 3. Tetra -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-200">
+                <div class="member-card group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-200">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="tetra.png" 
                               alt="Tetra" 
-                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              class="img-member w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="info-member absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-keyboard text-2xl text-red-600"></i>
                         </div>
@@ -443,15 +453,15 @@
                 </div>
 
                 <!-- 4. Joy Divixion -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-300">
+                <div class="member-card group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-300">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="joydivixion.png" 
                               alt="Joy Divixion" 
-                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              class="img-member w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1549298240-0d8e60513026?q=80&w=2070&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="info-member absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-guitar text-2xl text-red-600"></i>
                         </div>
@@ -462,15 +472,15 @@
                 </div>
 
                 <!-- 5. Chango -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal">
+                <div class="member-card group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="chango.jpg" 
                               alt="Chango" 
-                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              class="img-member w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=2070&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="info-member absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                          <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-drum text-2xl text-red-600"></i>
                         </div>
@@ -481,15 +491,15 @@
                 </div>
 
                 <!-- 6. Franco -->
-                 <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-100">
+                 <div class="member-card group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-100">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="vomitin.png" 
                               alt="Franco" 
-                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              class="img-member w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1460039230329-eb070fc6c77c?q=80&w=1935&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="info-member absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-guitar text-2xl text-red-600"></i>
                         </div>
@@ -500,15 +510,15 @@
                 </div>
 
                 <!-- 7. Nikki -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-200">
+                <div class="member-card group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-200">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="NIKKI.png" 
                               alt="Nikki" 
-                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              class="img-member w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=2070&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="info-member absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-music text-2xl text-red-600"></i>
                         </div>
@@ -519,15 +529,15 @@
                 </div>
 
                 <!-- 8. Kevin -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-300">
+                <div class="member-card group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-300">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="kevin.jpg" 
                               alt="Kevin" 
-                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              class="img-member w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=2064&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
-                    <div class="absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="info-member absolute bottom-0 left-0 w-full p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-music text-2xl text-red-600"></i>
                         </div>
@@ -660,7 +670,8 @@
             <div class="mt-20 border-t border-gray-800 pt-16">
                 <h3 class="text-4xl md:text-5xl text-center mb-12 uppercase text-white font-black reveal">Galería de <span class="text-red-600">Flyers</span></h3>
                 
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Grid modificado: 3 columnas en móvil -->
+                <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <!-- ACAPULCO -->
                     <div class="gallery-item group relative h-64 bg-gray-900 reveal" onclick="openModal('ACAPULCO.jpg')">
                         <img src="ACAPULCO.jpg" alt="ACAPULCO" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>ACAPULCO.jpg (No encontrado)</div>'">
@@ -892,6 +903,30 @@
         document.querySelectorAll('.reveal').forEach(section => {
             observer.observe(section);
         });
+
+        // --- Intersection Observer para efecto "Auto-Hover" en Integrantes (Mobile) ---
+        // Se activa cuando la tarjeta está visible en pantalla (50% de visibilidad)
+        const memberObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 
+        };
+
+        const memberObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('auto-hover-active');
+                } else {
+                    // Opcional: quitar la clase si se sale de pantalla para repetir el efecto
+                    entry.target.classList.remove('auto-hover-active');
+                }
+            });
+        }, memberObserverOptions);
+
+        document.querySelectorAll('.member-card').forEach(card => {
+            memberObserver.observe(card);
+        });
+
 
         // --- Modal Logic ---
         const modal = document.getElementById('imageModal');
