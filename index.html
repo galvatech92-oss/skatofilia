@@ -107,17 +107,22 @@
             100% { clip: rect(79px, 9999px, 20px, 0); transform: skew(0.24deg); }
         }
 
-        /* --- Scroll Animation Classes --- */
+        /* --- Scroll Animation Classes Mejoradas --- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(50px) scale(0.95); /* Más movimiento y escala */
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
         }
 
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
+
+        /* Retrasos para efecto cascada en tarjetas */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
 
         /* --- Custom Checkered Border --- */
         .ska-border-bottom {
@@ -151,6 +156,9 @@
             background-color: #fff;
             color: #000;
         }
+        .btn-glitch:active {
+            transform: scale(0.95); /* Feedback tactil */
+        }
 
         /* --- Listas de Eventos --- */
         .event-list li {
@@ -173,10 +181,11 @@
             cursor: pointer;
             overflow: hidden;
             border: 1px solid #333;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
-        .gallery-item:hover {
+        .gallery-item:hover, .gallery-item:active {
             border-color: var(--ska-red);
+            transform: scale(1.02); /* Zoom sutil al tocar */
         }
         .gallery-img {
             transition: transform 0.5s ease;
@@ -236,9 +245,10 @@
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Image Placeholder (Replace src with actual band photo) -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1974&auto=format&fit=crop" 
+            <img src="fondoconcierto.png" 
                  alt="Fondo concierto" 
-                 class="w-full h-full object-cover filter grayscale contrast-125 brightness-50">
+                 class="w-full h-full object-cover filter brightness-50"
+                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1974&auto=format&fit=crop'">
             <div class="hero-overlay absolute inset-0"></div>
         </div>
 
@@ -275,18 +285,18 @@
     <!-- Bio Section -->
     <section id="bio" class="py-20 px-4 max-w-6xl mx-auto reveal">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="relative">
-                <div class="absolute -top-4 -left-4 w-full h-full border-4 border-red-700 z-0 hidden md:block"></div>
+            <div class="relative group">
+                <div class="absolute -top-4 -left-4 w-full h-full border-4 border-red-700 z-0 hidden md:block transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
                 <!-- Placeholder Image for Band -->
                 <img src="SKATOFILIA.jpg" 
                      alt="Skatofilia en vivo" 
-                     class="relative z-10 w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl"
+                     class="relative z-10 w-full h-auto transition-transform duration-500 shadow-2xl hover:scale-[1.02]"
                      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop'">
                 
                 <!-- Segunda Foto Agregada -->
                 <img src="SKATOFILIA2.jpg" 
                      alt="Skatofilia Acción" 
-                     class="relative z-10 w-full h-auto grayscale hover:grayscale-0 transition-all duration-500 shadow-2xl mt-6"
+                     class="relative z-10 w-full h-auto transition-transform duration-500 shadow-2xl mt-6 hover:scale-[1.02]"
                      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1501612766622-2788414774cf?q=80&w=2067&auto=format&fit=crop'">
             </div>
             
@@ -324,20 +334,20 @@
     </section>
 
     <!-- Integrantes Section -->
-    <section id="integrantes" class="py-20 bg-zinc-900 reveal">
+    <section id="integrantes" class="py-20 bg-zinc-900">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-center text-4xl md:text-6xl mb-16">ALINEACIÓN <span class="text-red-600">OFICIAL</span></h2>
+            <h2 class="text-center text-4xl md:text-6xl mb-16 reveal">ALINEACIÓN <span class="text-red-600">OFICIAL</span></h2>
             
             <!-- Grid modificado para fotos verticales (más estrechas) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
                 
-                <!-- Leslie Tatoo -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                <!-- 1. Leslie Tatoo -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal">
                     <!-- Foto Vertical (h-auto min-h-[500px] o aspect ratio) -->
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="leslie.jpg" 
                               alt="Leslie Tatoo" 
-                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1780&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
@@ -352,12 +362,12 @@
                     </div>
                 </div>
 
-                <!-- Kevin -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                <!-- 2. Donnas (Movido después de Leslie) -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-100">
                     <div class="h-[550px] w-full overflow-hidden relative">
-                         <img src="kevin.jpg" 
-                              alt="Kevin" 
-                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                         <img src="DONNAS.png" 
+                              alt="Donnas" 
+                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=2064&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
@@ -365,18 +375,37 @@
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-music text-2xl text-red-600"></i>
                         </div>
-                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">KEVIN</h3>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">DONNAS</h3>
                         <p class="font-hand text-gray-300 text-lg drop-shadow-md">Trombón</p>
                         <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
                     </div>
                 </div>
 
-                <!-- Joy Divixion -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                <!-- 3. Tetra -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-200">
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="tetra.png" 
+                              alt="Tetra" 
+                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-keyboard text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">TETRA</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Teclado</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- 4. Joy Divixion -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-300">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="joydivixion.png" 
                               alt="Joy Divixion" 
-                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1549298240-0d8e60513026?q=80&w=2070&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
@@ -390,12 +419,12 @@
                     </div>
                 </div>
 
-                <!-- Chango -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                <!-- 5. Chango -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="chango.jpg" 
                               alt="Chango" 
-                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=2070&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
@@ -409,31 +438,12 @@
                     </div>
                 </div>
 
-                <!-- Tetra -->
-                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
-                    <div class="h-[550px] w-full overflow-hidden relative">
-                         <img src="tetra.png" 
-                              alt="Tetra" 
-                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                    </div>
-                    <div class="absolute bottom-0 left-0 w-full p-4">
-                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
-                             <i class="fas fa-keyboard text-2xl text-red-600"></i>
-                        </div>
-                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">TETRA</h3>
-                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Teclado</p>
-                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
-                    </div>
-                </div>
-                
-                <!-- Vomitin -->
-                 <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden">
+                <!-- 6. Franco -->
+                 <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-100">
                     <div class="h-[550px] w-full overflow-hidden relative">
                          <img src="vomitin.png" 
-                              alt="Vomitín" 
-                              class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                              alt="Franco" 
+                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1460039230329-eb070fc6c77c?q=80&w=1935&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
                     </div>
@@ -441,8 +451,46 @@
                         <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
                              <i class="fas fa-guitar text-2xl text-red-600"></i>
                         </div>
-                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">VOMITÍN</h3>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">FRANCO</h3>
                         <p class="font-hand text-gray-300 text-lg drop-shadow-md">Bajo</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- 7. Nikki -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-200">
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="NIKKI.png" 
+                              alt="Nikki" 
+                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=2070&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-music text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">NIKKI</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Saxofonista</p>
+                        <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- 8. Kevin -->
+                <div class="group relative bg-black border border-gray-800 p-0 hover:border-red-600 transition-colors duration-300 overflow-hidden reveal delay-300">
+                    <div class="h-[550px] w-full overflow-hidden relative">
+                         <img src="kevin.jpg" 
+                              alt="Kevin" 
+                              class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
+                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=2064&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4">
+                        <div class="absolute top-4 right-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                             <i class="fas fa-music text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-2xl text-white mb-1 group-hover:text-red-500 transition-colors drop-shadow-lg">KEVIN</h3>
+                        <p class="font-hand text-gray-300 text-lg drop-shadow-md">Trombón</p>
                         <div class="mt-2 w-12 h-1 bg-red-700 group-hover:w-full transition-all duration-300"></div>
                     </div>
                 </div>
@@ -470,19 +518,19 @@
             <div class="space-y-8">
                 
                 <!-- Album 1 -->
-                <div class="bg-zinc-900 p-8 border-l-8 border-red-600 hover:bg-zinc-800 transition-all text-center md:text-left">
+                <div class="bg-zinc-900 p-8 border-l-8 border-red-600 hover:bg-zinc-800 transition-all text-center md:text-left reveal delay-100">
                     <h3 class="text-3xl md:text-4xl mb-2 text-white">MÚSIKA MIERDA</h3>
                     <p class="text-gray-400 mb-4 font-hand">Noise Factory Records | EP Completo</p>
                 </div>
 
                 <!-- Album 2 -->
-                <div class="bg-zinc-900 p-8 border-l-8 border-white hover:bg-zinc-800 transition-all text-center md:text-left">
+                <div class="bg-zinc-900 p-8 border-l-8 border-white hover:bg-zinc-800 transition-all text-center md:text-left reveal delay-200">
                     <h3 class="text-3xl md:text-4xl mb-2 text-white">SKATOFILIA</h3>
                     <p class="text-gray-400 mb-4 font-hand">Disco Homónimo</p>
                 </div>
 
                 <!-- Album 3 -->
-                <div class="bg-zinc-900 p-8 border-l-8 border-gray-600 hover:bg-zinc-800 transition-all text-center md:text-left">
+                <div class="bg-zinc-900 p-8 border-l-8 border-gray-600 hover:bg-zinc-800 transition-all text-center md:text-left reveal delay-300">
                     <h3 class="text-3xl md:text-4xl mb-2 text-white">DEMO 2020 / PRIMERA LÍNEA</h3>
                     <p class="text-gray-400 mb-4 font-hand">Material de 6 temas</p>
                 </div>
@@ -497,7 +545,7 @@
             <h2 class="text-5xl md:text-7xl mb-12 text-center">TOUR / <span class="text-red-600">EVENTOS</span></h2>
 
             <!-- Próxima Presentación Highlight -->
-            <div class="bg-red-700 text-white p-8 md:p-12 mb-16 transform -rotate-1 shadow-[10px_10px_0px_#fff] border-2 border-white max-w-4xl mx-auto text-center relative overflow-hidden">
+            <div class="bg-red-700 text-white p-8 md:p-12 mb-16 transform -rotate-1 shadow-[10px_10px_0px_#fff] border-2 border-white max-w-4xl mx-auto text-center relative overflow-hidden active:scale-95 transition-transform duration-200">
                 <div class="absolute top-0 right-0 p-4 opacity-20">
                     <i class="fas fa-bullhorn text-9xl"></i>
                 </div>
@@ -511,7 +559,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
                 
                 <!-- COLOMBIA -->
-                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full">
+                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full reveal delay-100">
                     <h3 class="text-3xl text-red-600 mb-6 border-b border-gray-700 pb-2"><i class="fas fa-map-marker-alt mr-2"></i> COLOMBIA</h3>
                     <ul class="event-list text-gray-300">
                         <li>Decibelios en la Kapital</li>
@@ -524,7 +572,7 @@
                 </div>
 
                 <!-- CDMX / EDO MEX -->
-                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full">
+                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full reveal delay-200">
                     <h3 class="text-3xl text-red-600 mb-6 border-b border-gray-700 pb-2"><i class="fas fa-skull mr-2"></i> CDMX / EDO. MÉX.</h3>
                     <ul class="event-list text-gray-300 text-sm">
                         <li>Gran Presentación de Colores — Dioses Bikers México</li>
@@ -543,7 +591,7 @@
                 </div>
 
                 <!-- CHIAPAS -->
-                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full">
+                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full reveal delay-300">
                     <h3 class="text-3xl text-red-600 mb-6 border-b border-gray-700 pb-2"><i class="fas fa-tree mr-2"></i> CHIAPAS</h3>
                     <ul class="event-list text-gray-300">
                         <li>Lanzamiento del disco “Nada de Nadie” de Kadejo</li>
@@ -552,7 +600,7 @@
                 </div>
 
                 <!-- CHILE -->
-                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full">
+                <div class="bg-black border border-gray-700 p-6 hover:border-red-600 transition-colors h-full reveal delay-100">
                     <h3 class="text-3xl text-red-600 mb-6 border-b border-gray-700 pb-2"><i class="fas fa-star mr-2"></i> CHILE</h3>
                     <ul class="event-list text-gray-300">
                         <li>Bar 1 (Bombero Núñez)</li>
@@ -568,144 +616,144 @@
 
             <!-- GALERÍA DE FLYERS -->
             <div class="mt-20 border-t border-gray-800 pt-16">
-                <h3 class="text-4xl md:text-5xl text-center mb-12 uppercase text-white font-black">Galería de <span class="text-red-600">Flyers</span></h3>
+                <h3 class="text-4xl md:text-5xl text-center mb-12 uppercase text-white font-black reveal">Galería de <span class="text-red-600">Flyers</span></h3>
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     <!-- ACAPULCO -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('ACAPULCO.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal" onclick="openModal('ACAPULCO.jpg')">
                         <img src="ACAPULCO.jpg" alt="ACAPULCO" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>ACAPULCO.jpg (No encontrado)</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- ACOPIOFEST -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('ACOPIOFEST.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-100" onclick="openModal('ACOPIOFEST.jpg')">
                         <img src="ACOPIOFEST.jpg" alt="ACOPIOFEST" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>ACOPIOFEST.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- ALTERARTE -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('ALTERARTE.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-200" onclick="openModal('ALTERARTE.jpg')">
                         <img src="ALTERARTE.jpg" alt="ALTERARTE" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>ALTERARTE.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- BAR1 -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('BAR1.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-300" onclick="openModal('BAR1.jpg')">
                         <img src="BAR1.jpg" alt="BAR1" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>BAR1.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- CLUBSKA -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('CLUBSKA.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal" onclick="openModal('CLUBSKA.jpg')">
                         <img src="CLUBSKA.jpg" alt="CLUBSKA" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>CLUBSKA.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- decibelios -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('decibelios.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-100" onclick="openModal('decibelios.jpg')">
                         <img src="decibelios.jpg" alt="decibelios" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>decibelios.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- diosesbikers -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('diosesbikers.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-200" onclick="openModal('diosesbikers.jpg')">
                         <img src="diosesbikers.jpg" alt="diosesbikers" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>diosesbikers.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- gastrobarpunk -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('gastrobarpunk.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-300" onclick="openModal('gastrobarpunk.jpg')">
                         <img src="gastrobarpunk.jpg" alt="gastrobarpunk" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>gastrobarpunk.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- KADEJO -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('KADEJO.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal" onclick="openModal('KADEJO.jpg')">
                         <img src="KADEJO.jpg" alt="KADEJO" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>KADEJO.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- krampunks -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('krampunks.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-100" onclick="openModal('krampunks.jpg')">
                         <img src="krampunks.jpg" alt="krampunks" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>krampunks.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- LACATRINA -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('LACATRINA.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-200" onclick="openModal('LACATRINA.jpg')">
                         <img src="LACATRINA.jpg" alt="LACATRINA" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>LACATRINA.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- putrefactofest -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('putrefactofest.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-300" onclick="openModal('putrefactofest.jpg')">
                         <img src="putrefactofest.jpg" alt="putrefactofest" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>putrefactofest.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- rebelion -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('rebelion.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal" onclick="openModal('rebelion.jpg')">
                         <img src="rebelion.jpg" alt="rebelion" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>rebelion.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- rockalperro -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('rockalperro.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-100" onclick="openModal('rockalperro.jpg')">
                         <img src="rockalperro.jpg" alt="rockalperro" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>rockalperro.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- skaclubsur -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('skaclubsur.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-200" onclick="openModal('skaclubsur.jpg')">
                         <img src="skaclubsur.jpg" alt="skaclubsur" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>skaclubsur.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- SKAFESTXV -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('SKAFESTXV.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-300" onclick="openModal('SKAFESTXV.jpg')">
                         <img src="SKAFESTXV.jpg" alt="SKAFESTXV" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>SKAFESTXV.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- SKAMORA -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('SKAMORA.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal" onclick="openModal('SKAMORA.jpg')">
                         <img src="SKAMORA.jpg" alt="SKAMORA" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>SKAMORA.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- trajinera -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('trajinera.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-100" onclick="openModal('trajinera.jpg')">
                         <img src="trajinera.jpg" alt="trajinera" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>trajinera.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- UNAM -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('UNAM.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-200" onclick="openModal('UNAM.jpg')">
                         <img src="UNAM.jpg" alt="UNAM" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>UNAM.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
                         </div>
                     </div>
                     <!-- VOCESDEORIENTE -->
-                    <div class="gallery-item group relative h-64 bg-gray-900" onclick="openModal('VOCESDEORIENTE.jpg')">
+                    <div class="gallery-item group relative h-64 bg-gray-900 reveal delay-300" onclick="openModal('VOCESDEORIENTE.jpg')">
                         <img src="VOCESDEORIENTE.jpg" alt="VOCESDEORIENTE" class="gallery-img object-cover w-full h-full opacity-80 group-hover:opacity-100" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-gray-500 text-xs text-center p-2\'>VOCESDEORIENTE.jpg</div>'">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center pointer-events-none">
                             <i class="fas fa-search-plus text-white opacity-0 group-hover:opacity-100 text-3xl transition-opacity"></i>
